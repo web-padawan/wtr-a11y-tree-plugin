@@ -1,0 +1,64 @@
+{
+  "name": "wtr-a11y-tree-plugin",
+  "version": "0.1.0",
+  "description": "Chromium accessibility tree commands and chai assertions for Web Test Runner",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "default": "./dist/browser.js"
+    },
+    "./chai": {
+      "types": "./dist/chai.d.ts",
+      "default": "./dist/chai.js"
+    },
+    "./format": {
+      "types": "./dist/format.d.ts",
+      "default": "./dist/format.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tsc && prettier --check .",
+    "test": "npm run test:unit && npm run test:browser",
+    "test:unit": "node --test \"test/*.test.ts\"",
+    "test:browser": "npm run build && web-test-runner",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@web/test-runner-commands": "^1.0.1"
+  },
+  "peerDependencies": {
+    "@types/chai": "*",
+    "@web/test-runner": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/chai": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/chai": "^5.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.0.0",
+    "@web/test-runner": "^1.0.0",
+    "@web/test-runner-playwright": "^1.0.0",
+    "chai": "^6.2.2",
+    "playwright": "1.64.1",
+    "playwright-core": "1.64.1",
+    "prettier": "^3.9.4",
+    "typescript": "^6.0.3"
+  }
+}
